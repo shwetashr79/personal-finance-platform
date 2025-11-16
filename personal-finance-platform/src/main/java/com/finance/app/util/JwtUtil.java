@@ -1,5 +1,6 @@
 package com.finance.app.util;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -24,4 +25,22 @@ public class JwtUtil {
               .signWith(SECRET_KEY)
               .compact();
     }
+
+    //to support claim extractors
+    public Claims extractAllClaims(String token){
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public boolean isTokenValid(String token) {
+        try {
+            extractAllClaims(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
+
