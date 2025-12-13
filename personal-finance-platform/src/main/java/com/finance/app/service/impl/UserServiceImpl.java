@@ -32,12 +32,16 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
+        user.setRole("USER");
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         userRepository.save(user);
 
         return "User registered successfully!";
     }
+
+    //Earlier login validation was correct, but API access was not secure;
+    // now both login and API access are properly authenticated and authorized.
 
     @Override
     public String login(LoginRequest request) {

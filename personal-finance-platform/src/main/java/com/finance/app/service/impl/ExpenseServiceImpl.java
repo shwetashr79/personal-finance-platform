@@ -38,8 +38,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<Expense> getExpenses(String email) {
+    public List<Expense> getExpenses(Long id) {
         //List.of() is a static method used to create an immutable list(fixed-size,unmodifiable)
-        return expenseRepo.findByUserEmail(email);
+        return expenseRepo.findByUserId(id);
     }
 }

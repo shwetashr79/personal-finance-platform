@@ -3,6 +3,7 @@ package com.finance.app.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -10,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @RequiredArgsConstructor
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final JWTAuthenticationFilter jwtFilter;
@@ -18,7 +20,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/api/auth/**","/api/health","/api/expense/**","/api/categories/**","/api/budget/**").permitAll()
+                        .requestMatchers("/api/auth/**","/api/health","/api/expense/**","/api/categories/**","/api/budget/**"
+                                ).permitAll()
                 .anyRequest().authenticated()
                 )
                 //No remembering of user session

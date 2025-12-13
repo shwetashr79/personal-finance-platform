@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class PersonalFinancePlatformApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(PersonalFinancePlatformApplication.class, args);
 	}
 

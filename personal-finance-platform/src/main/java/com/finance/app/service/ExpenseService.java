@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ExpenseService {
     void addExpense(String email, ExpenseRequest request);
-    List<Expense> getExpenses(String email);
+    List<Expense> getExpenses(Long userId);
 }
