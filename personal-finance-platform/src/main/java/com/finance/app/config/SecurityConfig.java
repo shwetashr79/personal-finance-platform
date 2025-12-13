@@ -18,7 +18,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/api/auth/**","/api/health","/api/expense/**","/api/categories/**").permitAll()
+                        .requestMatchers("/api/auth/**","/api/health","/api/expense/**","/api/categories/**","/api/budget/**").permitAll()
                 .anyRequest().authenticated()
                 )
                 //No remembering of user session
